@@ -1,0 +1,63 @@
+import {FC} from "react";
+import {Box, Button, Flex, Heading, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Spacer, Text} from "@chakra-ui/react";
+import {ChevronDownIcon} from "@chakra-ui/icons";
+import useStoreCities from "../../store/cities";
+import type {ActiveView} from "../../types/common";
+
+interface HeaderProps {
+  viewSetter: React.Dispatch<React.SetStateAction<ActiveView>>;
+}
+
+const Header: FC<HeaderProps> = ({viewSetter}) => {
+  const citiesStore = useStoreCities();
+
+  const handleClick = (index: number): void => {
+    switch (index) {
+      case 0:
+        return viewSetter('first');
+
+      case 1:
+        return viewSetter('second');
+
+      case 2:
+        return viewSetter('third');
+        
+      default:
+        return viewSetter('home');
+    }
+  };
+  
+  return (
+    <Flex p={'20px'} pb={0}>
+      <Box>
+        <Heading as='h2' size='xl' color={'robin.900'}>
+          Nimbus
+        </Heading>
+      </Box>
+
+      <Spacer />
+
+      <Menu>
+        <MenuButton as={Button} rightIcon={<ChevronDownIcon />} >
+          Cities
+        </MenuButton>
+        <MenuList bg={'liquorice.800'}>
+          {citiesStore.citiesList.map((city, i) => 
+            <>
+              <MenuItem bg={'liquorice.800'} key={i} onClick={() => handleClick(i)}>
+                <Text fontSize='lg'>{city}</Text>
+              </MenuItem>
+              {
+                i !== citiesStore.citiesList.length - 1 &&
+                <MenuDivider key={i + 200}/>
+              }
+            </>
+            )
+          }
+        </MenuList>
+      </Menu>
+    </Flex>
+  )
+};
+
+export default Header;

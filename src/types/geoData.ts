@@ -1,4 +1,4 @@
-interface GeoEntity {
+export interface GeoEntity {
   place_id: number,
   lat: string,
   lon: string,
@@ -8,7 +8,6 @@ interface GeoEntity {
 }
 
 export type GeoData = GeoEntity[];
-
 
 /**
 {
