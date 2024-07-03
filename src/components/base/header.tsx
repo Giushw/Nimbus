@@ -29,7 +29,7 @@ const Header: FC<HeaderProps> = ({viewSetter}) => {
   
   return (
     <Flex p={'20px'} pb={0}>
-      <Box>
+      <Box as="button" onClick={() => handleClick(11)}>
         <Heading as='h2' size='xl' color={'robin.900'}>
           Nimbus
         </Heading>
@@ -45,11 +45,11 @@ const Header: FC<HeaderProps> = ({viewSetter}) => {
           {citiesStore.citiesList.map((city, i) => 
             <>
               <MenuItem bg={'liquorice.800'} key={i} onClick={() => handleClick(i)}>
-                <Text fontSize='lg'>{city}</Text>
+                <Text fontSize='lg' color={'robin.900'} fontWeight={600}>{city}</Text>
               </MenuItem>
               {
                 i !== citiesStore.citiesList.length - 1 &&
-                <MenuDivider key={i + 200}/>
+                <MenuDivider />
               }
             </>
             )

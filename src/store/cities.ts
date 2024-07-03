@@ -1,6 +1,5 @@
 import {create} from 'zustand';
 import {GeoEntity} from '../types/geoData';
-// import type {TypesList} from '@/types/decoders/common';
 
 interface StoreCities {
   citiesList: string[];
@@ -33,8 +32,5 @@ const useStoreCities = create<StoreCities>()((set) => ({
   updateSecondCity: (data: GeoEntity) => set(() => ({ secondCity: data })),
   updateThirdCity: (data: GeoEntity) => set(() => ({ thirdCity: data })),
 }));
-
-
-
 
 export default useStoreCities;

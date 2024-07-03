@@ -18,7 +18,8 @@ const Footer: FC = () => {
         <Text>© Nimbus 2024</Text>
       </Box>
       <Spacer />
-      <HStack p={4} 
+      <HStack 
+        p={4} 
         divider={<StackDivider borderColor='gray.200' />}
         spacing={4}
       >

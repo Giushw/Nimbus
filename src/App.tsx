@@ -1,79 +1,64 @@
-import {FC, useEffect, 
-  // useState
-} from 'react';
-import {getGeoData} from './server/geoData';
-// import {getForecast} from './server/forecast';
-// import {geoDataShortner} from './lib/utils';
+import {FC, useEffect} from 'react';
 import useStoreCities from './store/cities';
+import {getGeoData} from './server/geoData';
 import Dashboard from './layout/Dashboard';
+import {MOCK_FIRST, MOCK_SECOND, MOCK_THIRD} from './mock/geoData';
 
 const App: FC = () => {
   const citiesStore = useStoreCities();
+  const [firstCity, secondCity, thirdCity] = citiesStore.citiesList;
   
-  // const [weather, setWeather] = useState(null);
-  // const [geo, setGeo] = useState(null);
-
-  // 45.46 , 9.18
   useEffect(() => {
-    const first = citiesStore.citiesList[0];
-    const second = citiesStore.citiesList[1];
-    const third = citiesStore.citiesList[2];
-    // getForecast(geoDataShortner(45.4641943), geoDataShortner(9.1896346))
-    //   .then((data) => {
-    //     console.log('recived');
-    //     setWeather(data);
-    //   })
-    //   .catch((error: Error) => {
-    //     console.error('error: ', error);
-    //   })
-    //   .finally(() => console.log('finished'));
-
-    getGeoData(first)
+    if (!citiesStore.firstCity) {
+      getGeoData(firstCity)
       .then((data) => {
-        console.log('first recived');
-        citiesStore.updateFirstCity(data[0])
+        console.log('first geo data recived');
+        citiesStore.updateFirstCity(data[0]);
         citiesStore.updateLoadingFirst(true);
       })
       .catch((error: Error) => {
         console.error('error: ', error);
+        citiesStore.updateFirstCity(MOCK_FIRST);
       })
       .finally(() => citiesStore.updateLoadingFirst(false));
+    }
+  }, [citiesStore.firstCity]);
 
-    getGeoData(second)
+  useEffect(() => {
+    if (!citiesStore.secondCity) {
+      getGeoData(secondCity)
       .then((data) => {
-        console.log('second recived');
-        citiesStore.updateSecondCity(data[0])
+        console.log('second geo data recived');
+        citiesStore.updateSecondCity(data[0]);
         citiesStore.updateLoadingSecond(true);
       })
       .catch((error: Error) => {
         console.error('error: ', error);
+        citiesStore.updateSecondCity(MOCK_SECOND);
       })
       .finally(() => citiesStore.updateLoadingSecond(false));
+    }
+  }, [citiesStore.secondCity]);
 
-    getGeoData(third)
+  useEffect(() => {
+    if (!citiesStore.thirdCity) {
+      getGeoData(thirdCity)
       .then((data) => {
-        console.log('third recived');
-        citiesStore.updateThirdCity(data[0])
+        console.log('third geo data recived');
+        citiesStore.updateThirdCity(data[0]);
         citiesStore.updateLoadingThird(true);
       })
       .catch((error: Error) => {
         console.error('error: ', error);
+        citiesStore.updateThirdCity(MOCK_THIRD);
       })
       .finally(() => citiesStore.updateLoadingThird(false));
-
-  }, []);
-
-  useEffect(() => {
-    console.log('first geo data: ', citiesStore.firstCity)
-  }, [citiesStore.firstCity]);
-
-  useEffect(() => {
-    console.log('second geo data: ', citiesStore.secondCity)
-  }, [citiesStore.secondCity]);
-
-  useEffect(() => {
-    console.log('third geo data: ', citiesStore.thirdCity)
+    }
   }, [citiesStore.thirdCity]);
+
+  // useEffect(() => {
+  //   console.log('first geo data: ', citiesStore.firstCity)
+  // }, [citiesStore.firstCity]);
 
   return (
     <Dashboard />
