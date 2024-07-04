@@ -1,8 +1,9 @@
 import {FC} from "react";
-import {Box, Button, Flex, Heading, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Spacer, Text} from "@chakra-ui/react";
+import {Box, Button, Flex, HStack, Heading, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Spacer, Text} from "@chakra-ui/react";
 import {ChevronDownIcon} from "@chakra-ui/icons";
 import useStoreCities from "../../store/cities";
 import type {ActiveView} from "../../types/common";
+import NimbusIcon from "../icons/Nimbus";
 
 interface HeaderProps {
   viewSetter: React.Dispatch<React.SetStateAction<ActiveView>>;
@@ -30,9 +31,13 @@ const Header: FC<HeaderProps> = ({viewSetter}) => {
   return (
     <Flex p={'20px'} pb={0}>
       <Box as="button" onClick={() => handleClick(11)}>
-        <Heading as='h2' size='xl' color={'robin.900'}>
-          Nimbus
-        </Heading>
+        <HStack spacing={5}>
+          <NimbusIcon pathStroke='robin.900' w={35} h={35}/>
+          <Heading as='h2' size='xl' color={'robin.900'}>
+            Nimbus
+          </Heading>
+        </HStack>
+        
       </Box>
 
       <Spacer />

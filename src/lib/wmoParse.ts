@@ -16,6 +16,7 @@
  * 96, 99 * Thunderstorm with slight and heavy hail
  */
 
+
 const weatherDescriptions: { [key: string]: string } = {
   '0': 'Clear sky',
   '1': 'Mainly clear',
@@ -48,15 +49,13 @@ const weatherDescriptions: { [key: string]: string } = {
 };
 
 /**
- * WMO Parser
+ * WMO Code To Label
  * Get an intelligible string from a specific WMO code.
  * @param {string} code - Weather code to translate.
  * @returns {string} A readable string that explains the weather.
  * @example 
- * const data = wmoParser('12');
+ * const data = wmoCodeToLabel('12');
  */
-const wmoParser = (code: string): string => {
+export const wmoCodeToLabel = (code: string): string => {
   return weatherDescriptions[code] || 'Invalid code';
 };
-
-export default wmoParser;

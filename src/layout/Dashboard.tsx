@@ -5,9 +5,9 @@ import type {ActiveView} from "../types/common";
 import type {Forecast} from "../types/forecast";
 import {getForecast} from "../server/forecast";
 import {geoDataShortner} from "../lib/utils";
-import Header from "../components/base/header";
-import Body from "../components/base/body";
-import Footer from "../components/base/footer";
+import Header from "../components/base/Header";
+import Body from "../components/base/Body";
+import Footer from "../components/base/Footer";
 
 const Dashboard: FC = () => {
   const citiesStore = useStoreCities();
