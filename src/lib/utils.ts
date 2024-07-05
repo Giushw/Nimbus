@@ -26,7 +26,6 @@ export const trimLocation = (address: string): string => {
   return  parts.slice(1).join(',').trim();
 };
 
-
 /**
  * Normalize Dete
  * Get a readable date.
