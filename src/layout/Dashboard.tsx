@@ -16,8 +16,6 @@ const Dashboard: FC = () => {
   const [weather, setWeather] = useState<Forecast | null>(null);
 
   useEffect(() => {
-    console.log('active view: ', activeView);
-
     if (activeView !== 'home') {
       if (activeView === 'first' && citiesStore.firstCity) {
 

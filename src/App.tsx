@@ -12,7 +12,6 @@ const App: FC = () => {
     if (!citiesStore.firstCity) {
       getGeoData(firstCity)
       .then((data) => {
-        console.log('first geo data recived');
         citiesStore.updateFirstCity(data[0]);
         citiesStore.updateLoadingFirst(true);
       })
@@ -28,7 +27,6 @@ const App: FC = () => {
     if (!citiesStore.secondCity) {
       getGeoData(secondCity)
       .then((data) => {
-        console.log('second geo data recived');
         citiesStore.updateSecondCity(data[0]);
         citiesStore.updateLoadingSecond(true);
       })
@@ -44,7 +42,6 @@ const App: FC = () => {
     if (!citiesStore.thirdCity) {
       getGeoData(thirdCity)
       .then((data) => {
-        console.log('third geo data recived');
         citiesStore.updateThirdCity(data[0]);
         citiesStore.updateLoadingThird(true);
       })
@@ -55,10 +52,6 @@ const App: FC = () => {
       .finally(() => citiesStore.updateLoadingThird(false));
     }
   }, [citiesStore.thirdCity]);
-
-  // useEffect(() => {
-  //   console.log('first geo data: ', citiesStore.firstCity)
-  // }, [citiesStore.firstCity]);
 
   return (
     <Dashboard />

@@ -17,16 +17,12 @@ export const geoDataShortner = (value: number): number => parseFloat(value.toFix
  * const data = trimLocation('Milano, Lombardia, Italia');
  */
 export const trimLocation = (address: string): string => {
-  // Split the string by commas
   const parts = address.split(',');
 
-  // Check if there are at least two parts
   if (parts.length < 2) {
-      // If not, return the original string
       return address;
   }
 
-  // Join the parts back together, excluding the first part
   return  parts.slice(1).join(',').trim();
 };
 
@@ -40,16 +36,13 @@ export const trimLocation = (address: string): string => {
  * const data = anormalizeDate('2024-07-03T15:15');
  */
 export const normalizeDate = (dateStr: string): string => {
-  // Parse the input date string
   const date = new Date(dateStr);
 
-  // Extract date components
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
   const year = date.getFullYear();
   const hours = String(date.getHours()).padStart(2, '0');
   const minutes = String(date.getMinutes()).padStart(2, '0');
 
-  // Format the date as "DD/MM/YYYY HH:MM"
   return `${day}/${month}/${year} ${hours}:${minutes}`;
 };
